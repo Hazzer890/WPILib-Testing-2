@@ -8,6 +8,7 @@
 #include <frc/XboxController.h>
 #include <ctre/Phoenix.h>
 #include <frc/DoubleSolenoid.h>
+#include <math.h>
 
 class Robot : public frc::TimedRobot {
  public:

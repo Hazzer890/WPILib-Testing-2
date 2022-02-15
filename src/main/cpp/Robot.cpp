@@ -3,6 +3,8 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Robot.h"
+#include <iostream>
+
 
 void Robot::RobotInit() {
   //Contollers
@@ -34,12 +36,38 @@ void Robot::AutonomousPeriodic() {}
 
 void Robot::TeleopInit() {}
 void Robot::TeleopPeriodic() {
-  //HERE IS WHERE YOUR TELEOP CODE GOES
-  //Example Xbox code
-  double speed = driverXbox->GetLeftY();
-  //Example Motor Contoller Code
-  leftIntake->Set(ControlMode::PercentOutput, speed);
+  //Drive Code
+  double X = driverXbox->GetLeftX();
+  double Y = driverXbox->GetLeftY();
+  double yaw = driverXbox->GetRightX();
 
+  flDrive->Set(ControlMode::PercentOutput, X + Y + yaw);
+  frDrive->Set(ControlMode::PercentOutput, X + Y + yaw);
+  blDrive->Set(ControlMode::PercentOutput, X - Y - yaw);
+  brDrive->Set(ControlMode::PercentOutput, X - Y - yaw);
+  
+  //CoDriver Code
+  int directionalControl = operatorXbox->GetLeftY();
+  bool Intake = operatorXbox->GetAButtonPressed();
+  bool Index = operatorXbox->GetBButtonPressed();
+  bool Shooter = operatorXbox->GetXButtonPressed();
+  bool Angle = operatorXbox->GetYButtonPressed();
+
+  rightIntake->Set(ControlMode::PercentOutput, Intake * directionalControl * 0.7);
+  leftIntake->Set(ControlMode::PercentOutput, Intake * directionalControl * -0.7);
+
+  indexOne->Set(ControlMode::PercentOutput, Index * directionalControl * 0.7);
+  indexTwo->Set(ControlMode::PercentOutput, Index * directionalControl * -0.7);
+
+  lowerShooter->Set(ControlMode::PercentOutput, Shooter);
+  upperShooter->Set(ControlMode::PercentOutput, Shooter);
+  if(Angle){
+    anglePiston->Set(frc::DoubleSolenoid::kForward);
+  } else {
+    anglePiston->Set(frc::DoubleSolenoid::kReverse);
+  }
+  
+  
 }
 
 void Robot::DisabledInit() {}
