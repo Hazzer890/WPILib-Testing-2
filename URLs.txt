@@ -1,0 +1,5 @@
+https://first.wpi.edu/wpilib/allwpilib/docs/release/cpp/classfrc_1_1_xbox_controller.html#details
+https://docs.ctre-phoenix.com/en/stable/ch05a_CppJava.html
+https://github.com/Hazzer890/2019-DeepSpace/blob/master/5663/src/main/cpp/Robot5663.cpp
+https://github.com/Hazzer890/2019-DeepSpace/blob/master/5663/src/main/include/Robot5663.h
+https://docs.wpilib.org/en/stable/docs/zero-to-robot/step-2/offline-installation-preparations.html

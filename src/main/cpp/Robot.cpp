@@ -25,7 +25,7 @@ void Robot::RobotInit() {
   upperShooter = new VictorSPX(9);
 
   //Solenoids
-  anglePiston = new frc::DoubleSolenoid(0, 1);
+  anglePiston = new frc::DoubleSolenoid(frc::PneumaticsModuleType::CTREPCM, 0, 1);
 }
 void Robot::RobotPeriodic() {}
 
